@@ -1,0 +1,6 @@
+- ESLINT
+- PINIA
+- TAILWINDCSS
+- VUE
+- Heroicons
+- TAILWIND UI
