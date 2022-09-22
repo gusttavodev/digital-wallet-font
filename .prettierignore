@@ -12,3 +12,6 @@ coverage/
 /website/static/playground.js
 .nyc_output
 /vendors/
+# Ignore artifacts:
+build
+coverage
