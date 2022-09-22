@@ -20,5 +20,13 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {},
   "eslint.alwaysShowStatus": true,
-  "eslint.validate": ["javascript", "typescript", "html", "vue", "markdown"]
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "jsonc",
+    "json",
+    "html",
+    "vue",
+    "markdown"
+  ]
 }

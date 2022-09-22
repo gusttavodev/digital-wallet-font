@@ -1,4 +1,11 @@
 {
   "root": true,
-  "extends": ["eslint:recommended"]
+  "parser": "vue-eslint-parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/vue3-recommended",
+    "plugin:json/recommended-with-comments",
+    "plugin:markdown/recommended",
+    "plugin:prettier/recommended"
+  ]
 }
