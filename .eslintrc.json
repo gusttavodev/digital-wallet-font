@@ -7,6 +7,7 @@
     "plugin:json/recommended-with-comments",
     "plugin:markdown/recommended",
     "@nuxtjs/eslint-config-typescript",
+    "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
   "rules": {
