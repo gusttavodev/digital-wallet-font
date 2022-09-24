@@ -1,7 +1,12 @@
-import { Config } from "tailwindcss";
+/** @type {import('tailwindcss').Config} */
 
-export default <Config>{
-  theme: {
-    extend: {},
-  },
+module.exports = {
+  content: [],
+  theme: {},
+  variants: {},
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };
