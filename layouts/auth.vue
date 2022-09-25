@@ -29,7 +29,7 @@
             leave-to="-translate-x-full"
           >
             <DialogPanel
-              class="relative flex-1 flex flex-col max-w-xs w-full bg-gray-800"
+              class="relative flex-1 flex flex-col max-w-xs w-full bg-primary-700"
             >
               <TransitionChild
                 as="template"
@@ -54,9 +54,9 @@
               <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                 <div class="flex-shrink-0 flex items-center px-4">
                   <img
-                    class="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                    alt="Workflow"
+                    class="rounded-full mx-auto h-20 w-auto w-auto"
+                    src="~/assets/img/logo.svg"
+                    alt="Workfow"
                   />
                 </div>
                 <nav class="mt-5 px-2 space-y-1">
@@ -66,8 +66,8 @@
                     :href="item.href"
                     :class="[
                       item.current
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        ? 'bg-primary-900 text-white'
+                        : 'text-primary-300 hover:bg-primary-700 hover:text-white',
                       'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
                     ]"
                   >
@@ -75,8 +75,8 @@
                       :is="item.icon"
                       :class="[
                         item.current
-                          ? 'text-gray-300'
-                          : 'text-gray-400 group-hover:text-gray-300',
+                          ? 'text-primary-300'
+                          : 'text-primary-400 group-hover:text-primary-300',
                         'mr-3 flex-shrink-0 h-6 w-6',
                       ]"
                       aria-hidden="true"
@@ -85,7 +85,7 @@
                   </a>
                 </nav>
               </div>
-              <div class="flex-shrink-0 flex bg-gray-700 p-4">
+              <div class="flex-shrink-0 flex bg-primary-800 p-4">
                 <a href="#" class="flex-shrink-0 group block">
                   <div class="flex flex-col">
                     <div class="flex">
@@ -107,13 +107,8 @@
                         </button>
                       </div>
                     </div>
-                    <div class="flex w-full justify-center pt-2">
-                      <button
-                        type="button"
-                        class="w-full px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                      >
-                        Sair
-                      </button>
+                    <div class="pt-2">
+                      <v-button> Sair </v-button>
                     </div>
                   </div>
                 </a>
@@ -126,13 +121,13 @@
     </TransitionRoot>
 
     <div class="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
-      <div class="flex-1 flex flex-col min-h-0 bg-gray-800">
+      <div class="flex-1 flex flex-col min-h-0 bg-primary-700">
         <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
           <div class="flex items-center flex-shrink-0 px-4">
             <img
-              class="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-              alt="Workflow"
+              class="rounded-full mx-auto h-20 w-auto w-auto"
+              src="~/assets/img/logo.svg"
+              alt="Workfow"
             />
           </div>
           <nav class="mt-5 flex-1 px-2 space-y-1">
@@ -142,8 +137,8 @@
               :href="item.href"
               :class="[
                 item.current
-                  ? 'bg-gray-900 text-white'
-                  : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                  ? 'bg-primary-900 text-white'
+                  : 'text-primary-300 hover:bg-primary-700 hover:text-white',
                 'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
               ]"
             >
@@ -151,8 +146,8 @@
                 :is="item.icon"
                 :class="[
                   item.current
-                    ? 'text-gray-300'
-                    : 'text-gray-400 group-hover:text-gray-300',
+                    ? 'text-primary-300'
+                    : 'text-primary-400 group-hover:text-primary-300',
                   'mr-3 flex-shrink-0 h-6 w-6',
                 ]"
                 aria-hidden="true"
@@ -161,7 +156,7 @@
             </a>
           </nav>
         </div>
-        <div class="flex-shrink-0 flex bg-gray-700 p-4">
+        <div class="flex-shrink-0 flex bg-primary-800 p-4">
           <a href="#" class="flex-shrink-0 w-full group block">
             <div class="flex flex-row justify-between">
               <div>
@@ -180,12 +175,7 @@
                 </button>
               </div>
               <div>
-                <button
-                  type="button"
-                  class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  Sair
-                </button>
+                <v-button> Sair </v-button>
               </div>
             </div>
           </a>
@@ -194,7 +184,7 @@
     </div>
     <div class="md:pl-64 flex flex-col flex-1">
       <div
-        class="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-gray-100"
+        class="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-primary-700"
       >
         <button
           type="button"
@@ -202,10 +192,10 @@
           @click="sidebarOpen = true"
         >
           <span class="sr-only">Open sidebar</span>
-          <Bars4Icon class="h-6 w-6" aria-hidden="true" />
+          <Bars4Icon class="h-6 w-6 text-gray-100" aria-hidden="true" />
         </button>
       </div>
-      <main class="flex-1">
+      <main class="bg-gray-100 h-screen min-h-full">
         <div class="py-6">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1> -->

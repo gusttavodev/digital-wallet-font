@@ -31,22 +31,12 @@
             >
           </div>
           <div class="text-sm">
-            <a
-              href="#"
-              class="font-medium text-indigo-600 hover:text-indigo-500"
-            >
-              Esqueceu sua senha?
-            </a>
+            <v-a> Esqueceu sua senha? </v-a>
           </div>
         </div>
 
         <div>
-          <button
-            submit
-            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Entrar
-          </button>
+          <v-button type="submit">Entrar</v-button>
         </div>
       </form>
 
@@ -58,12 +48,8 @@
           <div class="relative flex justify-center text-sm">
             <span class="px-2 bg-white text-gray-500">
               Ainda não possui uma conta ?
-              <router-link
-                to="register"
-                class="font-medium text-indigo-600 hover:text-indigo-500"
-                >Criar uma</router-link
-              ></span
-            >
+              <v-a> Esqueceu sua senha? </v-a>
+            </span>
           </div>
         </div>
       </div>

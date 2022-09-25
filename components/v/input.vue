@@ -89,7 +89,7 @@ export default {
         return "border-red-300 text-red-900 placeholder-red-300  focus:ring-red-500 focus:border-red-500";
       if (this.disabled)
         return "border-gray-300 text-gray-900 placeholder-gray-300  focus:ring-gray-500 focus:border-gray-500 cursor-not-allowed ";
-      return "border-gray-300 text-indigo-900 placeholder-indigo-300  focus:ring-indigo-500 focus:border-indigo-500";
+      return "border-gray-300 text-primary-900 placeholder-primary-300  focus:ring-primary-500 focus:border-primary-500";
     },
   },
   methods: {
