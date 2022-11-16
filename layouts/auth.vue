@@ -219,6 +219,7 @@ import {
 } from "@headlessui/vue";
 import {
   ChartPieIcon,
+  WalletIcon,
   CubeIcon,
   BookmarkIcon,
   Bars4Icon,
@@ -229,8 +230,14 @@ import {
 const navigation = [
   {
     name: "Dashboard",
-    href: { name: "dashabord" },
+    href: "/dashabord",
     icon: ChartPieIcon,
+    current: true,
+  },
+  {
+    name: "Wallet",
+    href: "/wallet",
+    icon: WalletIcon,
     current: true,
   },
 ];

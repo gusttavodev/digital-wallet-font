@@ -1,7 +1,7 @@
 <template>
-  <NuxtLayout :name="layout"> AAA </NuxtLayout>
+  <div></div>
 </template>
 
 <script setup>
-const layout = "guest";
+navigateTo("/auth/login");
 </script>

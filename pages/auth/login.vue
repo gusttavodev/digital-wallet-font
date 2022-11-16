@@ -1,8 +1,9 @@
 <template>
   <NuxtLayout :name="layout">
     <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-      <form class="space-y-6" @submit.prevent="login">
+      <form class="space-y-6" @submit.prevent="submit">
         <v-input
+          id="email"
           v-model="form.email"
           :value="form.email"
           :error="errors?.email"
@@ -11,6 +12,7 @@
           type="email"
         />
         <v-input
+          id="password"
           v-model="form.password"
           :value="form.password"
           :error="errors?.password"
@@ -48,7 +50,7 @@
           <div class="relative flex justify-center text-sm">
             <span class="px-2 bg-white text-gray-500">
               Ainda não possui uma conta ?
-              <v-a> Esqueceu sua senha? </v-a>
+              <v-a href="/auth/register">Cria uma conta</v-a>
             </span>
           </div>
         </div>
@@ -57,18 +59,30 @@
   </NuxtLayout>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { reactive } from "vue";
-// import useAuth from '../../composables/auth'
+const { login } = useAuth();
+const router = useRouter();
+
+definePageMeta({ middleware: ["guest"] });
 const layout = "guest";
 
+const errors = ref<Record<string, string[]>>({});
 const form = reactive({
   email: "",
   password: "",
 });
-// const { errors, authLogin } = useAuth()
 
-const login = async () => {
-  // await authLogin({ ...form })
+const submit = async () => {
+  errors.value = {};
+  await submitRequest(
+    login(form),
+    () => {
+      router.push("/dashboard");
+    },
+    (validationErrors) => {
+      errors.value = validationErrors;
+    }
+  );
 };
 </script>
