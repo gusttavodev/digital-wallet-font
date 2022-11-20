@@ -8,18 +8,40 @@ type Wallet = {
   updated_at: string;
 };
 
-export const useWallet = () => {
-  const wallets: Ref<Array<Wallet>> = ref(null);
+type WalletForm = {
+  name: string;
+};
 
-  async function fetchCategories() {
+export const useWallets = () => {
+  return useState("wallets");
+};
+
+export const useWallet = () => {
+  const wallets = useWallets();
+
+  async function fetchWallets() {
     const response: Array<Wallet> = await $larafetch("/api/wallet", {
       method: "get",
     });
     wallets.value = response;
   }
 
+  async function storeWallet(form: WalletForm) {
+    await $larafetch("/api/wallet", { method: "post", body: form });
+    await fetchWallets();
+  }
+
+  async function deleteWallet(wallet: Wallet) {
+    await $larafetch(`/api/wallet/${wallet.id}`, {
+      method: "delete",
+    });
+    await fetchWallets();
+  }
+
   return {
     wallets,
-    fetchCategories,
+    fetchWallets,
+    storeWallet,
+    deleteWallet,
   };
 };

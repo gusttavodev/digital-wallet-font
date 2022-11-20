@@ -1,71 +1,96 @@
 <template>
   <NuxtLayout :name="layout">
+    <div class="flex justify-between py-5">
+      <div>
+        <h1 class="text-3xl text-bold">Wallets</h1>
+      </div>
+      <div>
+        <v-button @click="showWalletCreate = true">Create wallet</v-button>
+      </div>
+    </div>
     <ul
       role="list"
-      class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+      class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
     >
       <li
         v-for="wallet in wallets"
-        :key="wallet.email"
+        :key="wallet.id"
         class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
       >
-        <div class="flex w-full items-center justify-between space-x-6 p-6">
-          <div class="flex-1 truncate">
-            <div class="flex items-center space-x-3">
-              <h3 class="truncate text-sm font-medium text-gray-900">
-                {{ wallet.name }}
-              </h3>
-              <span
-                class="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800"
-                >Up 10%</span
-              >
-            </div>
-            <p class="mt-1 truncate text-sm text-gray-500">R$ 10,00</p>
-          </div>
-        </div>
-        <div>
-          <div class="-mt-px flex divide-x divide-gray-200">
-            <div class="flex w-0 flex-1">
-              <a
-                shref="#"
-                class="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
-              >
-                <BanknotesIcon
-                  class="h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
-                <span class="ml-3">Transaction</span>
-              </a>
-            </div>
-            <div class="-ml-px flex w-0 flex-1">
-              <a
-                href="#"
-                class="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
-              >
-                <TrashIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
-                <span class="ml-3">Remove</span>
-              </a>
-            </div>
-          </div>
-        </div>
+        <wallet-show
+          :wallet="wallet"
+          @clickTransaction="openTransaction(wallet)"
+          @clickRemove="openDelete(wallet)"
+        />
       </li>
     </ul>
+
+    <v-modal
+      title="Create a new wallet"
+      :open="showWalletCreate"
+      @onClose="showWalletCreate = false"
+    >
+      <wallet-form
+        @onCreate="showWalletCreate = false"
+        @onCancel="showWalletCreate = false"
+      />
+    </v-modal>
+
+    <v-modal
+      title="Remove Wallet"
+      :open="showWalletDelete"
+      @onClose="showWalletDelete = false"
+    >
+      <wallet-delete
+        :wallet="selectedWallet"
+        @onDelete="showWalletDelete = false"
+        @onCancel="showWalletDelete = false"
+      />
+    </v-modal>
+
+    <v-modal
+      title="Make new transaction"
+      :open="showTransaction"
+      @onClose="showTransaction = false"
+    >
+      <wallet-transaction-form
+        :wallet="selectedWallet"
+        @onStore="onStoreTransaction"
+      />
+    </v-modal>
   </NuxtLayout>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { onMounted } from "vue";
-import {
-  BanknotesIcon,
-  EnvelopeIcon,
-  PhoneIcon,
-  TrashIcon,
-} from "@heroicons/vue/20/solid";
 definePageMeta({ middleware: ["auth"] });
-const layout = "auth";
-const { fetchCategories, wallets } = useWallet();
 
-onMounted(() => {
-  fetchCategories();
+const layout = "auth";
+
+const showWalletCreate = ref(false);
+const showWalletDelete = ref(false);
+const showTransaction = ref(false);
+
+const selectedWallet = ref();
+
+const { fetchWallets, wallets } = useWallet();
+
+onMounted(async () => {
+  await fetchWallets();
 });
+
+const openTransaction = (wallet) => {
+  showTransaction.value = true;
+  selectedWallet.value = wallet;
+};
+
+const openDelete = (wallet) => {
+  showWalletDelete.value = true;
+  selectedWallet.value = wallet;
+};
+
+const onStoreTransaction = async () => {
+  showTransaction.value = false;
+  await fetchWallets();
+};
 </script>

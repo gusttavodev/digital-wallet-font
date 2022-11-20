@@ -230,7 +230,7 @@ import {
 const navigation = [
   {
     name: "Dashboard",
-    href: "/dashabord",
+    href: "/dashboard",
     icon: ChartPieIcon,
     current: true,
   },

@@ -8,7 +8,7 @@
       {{ label }}
     </label>
     <div class="mt-1 relative rounded-md shadow-sm">
-      <input
+      <!-- <input
         :id="id"
         ref="input"
         :class="computedClass"
@@ -19,9 +19,23 @@
         :required="required"
         :disabled="disabled"
         :autocomplete="autocomplete"
-        :step="step.length > 0 ? step : null"
         @input="$emit('update:modelValue', $event.target.value)"
-      />
+      /> -->
+      <select
+        :id="id"
+        ref="input"
+        :class="computedClass"
+        class="block w-full pr-10 focus:outline-none sm:text-sm rounded-md"
+        :name="name"
+        :type="type"
+        :value="value"
+        :required="required"
+        :disabled="disabled"
+        :autocomplete="autocomplete"
+        @input="$emit('update:modelValue', $event.target.value)"
+      >
+        <slot />
+      </select>
       <div
         v-if="error"
         class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
@@ -66,12 +80,6 @@ export default {
       type: String,
       default() {
         return `text`;
-      },
-    },
-    step: {
-      type: String,
-      default() {
-        return ``;
       },
     },
     autocomplete: {

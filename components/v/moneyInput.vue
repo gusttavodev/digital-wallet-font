@@ -17,9 +17,7 @@
         :type="type"
         :value="value"
         :required="required"
-        :disabled="disabled"
-        :autocomplete="autocomplete"
-        :step="step.length > 0 ? step : null"
+        step="0.01"
         @input="$emit('update:modelValue', $event.target.value)"
       />
       <div
@@ -44,12 +42,6 @@ export default {
   components: { ExclamationCircleIcon },
   inheritAttrs: false,
   props: {
-    disabled: {
-      type: Boolean,
-      default() {
-        return false;
-      },
-    },
     id: {
       type: String,
       default() {
@@ -64,21 +56,7 @@ export default {
     },
     type: {
       type: String,
-      default() {
-        return `text`;
-      },
-    },
-    step: {
-      type: String,
-      default() {
-        return ``;
-      },
-    },
-    autocomplete: {
-      type: String,
-      default() {
-        return `off`;
-      },
+      default: "text",
     },
     value: String,
     label: String,
