@@ -75,6 +75,7 @@ const form = reactive({
 
 const submit = async () => {
   errors.value = {};
+
   await submitRequest(
     login(form),
     () => {

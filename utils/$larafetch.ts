@@ -71,6 +71,10 @@ export async function $larafetch<T, R extends ResponseType = "json">(
       redirectIfNotAuthenticated &&
       [401, 419].includes(error.response?.status)
     ) {
+      if (error.data?.message === "Email ou senha inválidos") {
+        throw error;
+      }
+
       await navigateTo("/auth/login");
     }
 

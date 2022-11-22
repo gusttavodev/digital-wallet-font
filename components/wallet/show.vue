@@ -7,8 +7,14 @@
             {{ props.wallet.name }}
           </h3>
           <span
+            v-if="wallet.total_amount >= 0"
             class="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800"
-            >Up {{ wallet.latest_transaction }}</span
+            >Up</span
+          >
+          <span
+            v-else
+            class="inline-block flex-shrink-0 rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-800"
+            >Down</span
           >
         </div>
         <p class="mt-1 truncate text-xl text-bold">

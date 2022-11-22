@@ -13,6 +13,9 @@ export async function submitRequest<T>(
 
     return { data, errors: null };
   } catch (error) {
+    if (error.data?.message === "Email ou senha inválidos") {
+      alert("Invalid email or password");
+    }
     if (!(error instanceof FetchError)) throw error;
     if (error.response?.status !== 422) throw error;
 
